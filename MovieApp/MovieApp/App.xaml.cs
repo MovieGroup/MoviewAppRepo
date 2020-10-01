@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using MovieApp.Views;
 namespace MovieApp
 {
     public partial class App : Application
