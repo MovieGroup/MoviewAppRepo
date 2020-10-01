@@ -1,4 +1,5 @@
 ﻿
+using MovieApp.Models;
 using MovieApp.ViewModels;
 using Xamarin.Forms;
 
@@ -6,23 +7,22 @@ namespace MovieApp.Views
 {
     public partial class MainPage : ContentPage
     {
-        MainPageViewModel VM;
+        public MainPageViewModel ViewModel;
+
         public MainPage()
         {
             InitializeComponent();
-            VM = new MainPageViewModel();
-            this.BindingContext = VM;
+            ViewModel = new MainPageViewModel();
+            BindingContext = ViewModel;
         }
 
-        async void Button_Clicked(System.Object sender, System.EventArgs e)
+        void ImageButton_Clicked(System.Object sender, System.EventArgs e)
         {
+            ImageButton snder = (ImageButton)sender;
 
-            //Root root = new Root();
-            //List<Result> a = await root.GetTopRate();
-            //List<Result> b = await root.GetUpconming();
-            //List<Result> c = await root.GetPopular();
-            //string k = "";
-            // await Navigation.PushModalAsync(new DetailPage());
+            var x = (Result)snder.BindingContext;
+
+            ViewModel.NavigateDetailView((Result)snder.BindingContext);
 
         }
     }

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using MovieApp.Models;
+using MovieApp.Views;
 
 namespace MovieApp.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
         private Root root;
-
         private List<Result> topRate;
         private List<Result> upcoming;
         private List<Result> popular;
+
 
 
         public List<Result> TopRate
@@ -41,6 +42,7 @@ namespace MovieApp.ViewModels
             TopRate = new List<Result>();
             Upcoming = new List<Result>();
             Popular = new List<Result>();
+
             GetBannersAsync();
         }
 
@@ -55,6 +57,9 @@ namespace MovieApp.ViewModels
 
 
 
-
+        public async void NavigateDetailView(Result movie)
+        {
+            await App.Current.MainPage.Navigation.PushModalAsync(new DetailPage(movie), true);
+        }
     }
 }

@@ -1,7 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MovieApp.Views.DetailPage">
-    <StackLayout>
-        <Label  Text=" este es El detalle"/>
+    <StackLayout BackgroundColor="#263647">
+
+        <Image VerticalOptions="Start" Aspect="AspectFill" Source="http://image.tmdb.org/t/p/w500/qzA87Wf4jo1h8JMk9GilyIYvwsA.jpg"/>
+        <StackLayout BackgroundColor="#263647" VerticalOptions="FillAndExpand">
+            <Label Text="hola" TextColor="White"/>
+            <Editor BackgroundColor="#263647" Text="alv" TextColor="White" IsEnabled="False"/>
+        </StackLayout>
+
+
+        <StackLayout>
+            <Label TextColor="White" Text="creditos"/>
+        </StackLayout>
+
 
     </StackLayout>
 </ContentPage>

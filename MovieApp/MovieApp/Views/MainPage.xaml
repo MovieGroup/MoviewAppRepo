@@ -30,7 +30,12 @@
                                     <ColumnDefinition Width="100"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <ImageButton Grid.Row="0" Source="{Binding poster_path}" Aspect="AspectFill" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="Red" />
+                                <ImageButton Grid.Row="0" Clicked="ImageButton_Clicked" Source="{Binding poster_path}" Aspect="AspectFill" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="Red">
+                                    <ImageButton.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="TapGestureRecognizer_Tapped"/>
+                                    </ImageButton.GestureRecognizers>
+                                </ImageButton>
                                 <Label  Grid.Row="1" FontSize="Small" TextColor="White" FontAttributes="Bold" Text="{Binding original_title}"/>
                             </Grid>
                         </DataTemplate>
@@ -52,18 +57,13 @@
                                     <ColumnDefinition Width="100"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <ImageButton Grid.Row="0" Source="{Binding poster_path}" Aspect="Fill" HorizontalOptions="FillAndExpand" />
+                                <ImageButton Grid.Row="0" Clicked="ImageButton_Clicked" Source="{Binding poster_path}" Aspect="Fill" HorizontalOptions="FillAndExpand" />
                                 <Label  Grid.Row="1" FontSize="Small" TextColor="White" FontAttributes="Bold" Text="{Binding original_title}"/>
                             </Grid>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
+
                 </CarouselView>
-
-
-
-
-
-
                 <Label Text="UPCOMING"  TextColor="White"  FontSize="Medium"/>
                 <CarouselView HorizontalScrollBarVisibility="Never"
                               ItemsSource="{Binding Upcoming, Mode=TwoWay}" >
@@ -78,7 +78,7 @@
                                     <ColumnDefinition Width="100"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <ImageButton Grid.Row="0" HeightRequest="100" WidthRequest="100" Source="{Binding poster_path}" Aspect="Fill" HorizontalOptions="FillAndExpand"/>
+                                <ImageButton Grid.Row="0" Clicked="ImageButton_Clicked" HeightRequest="100" WidthRequest="100" Source="{Binding poster_path}" Aspect="Fill" HorizontalOptions="FillAndExpand"/>
                                 <Label  Grid.Row="1" FontSize="Small" TextColor="White" FontAttributes="Bold" Text="{Binding original_title}"/>
                             </Grid>
                         </DataTemplate>
