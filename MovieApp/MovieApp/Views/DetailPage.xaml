@@ -20,7 +20,7 @@
                WidthRequest="200"
                Aspect="AspectFill"
                Source="{Binding Movie.poster_path, Mode=OneWay}"/>
-            <ImageButton Clicked="Button_Clicked" Padding="10,70,0,0" Source="back" HorizontalOptions="Start" VerticalOptions="Start"/>
+            <ImageButton BackgroundColor="Transparent" HeightRequest="35" WidthRequest="35"  Clicked="Button_Clicked" Margin="20,30,0,0" Source="back.png" HorizontalOptions="Start" VerticalOptions="Start"/>
 
         </Grid>
 
@@ -79,8 +79,8 @@
                     <Label Grid.Row="2" Grid.Column="0" TextColor="LightGray" Text="Release"/>
 
                     <Label Grid.Row="0" Grid.Column="1" TextColor="LightGray" Text="{Binding Companies.list_companies, FallbackValue='N/A'}"/>
-                    <Label Grid.Row="1" Grid.Column="1" TextColor="LightGray" Text="{Binding Companies.list_genres, FallbackValue='N/A'}"/>
-                    <Label Grid.Row="2" Grid.Column="1" TextColor="LightGray" Text="{Binding Companies.release_date,FallbackValue='N/A', StringFormat='{0:yyyy}'}"/>
+                    <Label Grid.Row="1" Grid.Column="1" TextColor="LightGray" Text="{Binding Companies.list_companies, FallbackValue='N/A'}"/>
+                    <Label Grid.Row="2" Grid.Column="1" TextColor="LightGray" Text="{Binding Companies.list_companies,FallbackValue='N/A', StringFormat='{0:yyyy}'}"/>
                 </Grid>
             </StackLayout>
         </ScrollView>

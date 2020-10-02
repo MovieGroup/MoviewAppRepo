@@ -8,8 +8,8 @@ namespace MovieApp.Models
 {
     public class CastClass
     {
-        public int id { get; set; }
-        public IList<Cast> cast { get; set; }
+        public int? id { get; set; }
+        public IList<Cast> Cast { get; set; }
 
 
 
@@ -32,20 +32,20 @@ namespace MovieApp.Models
                 resp = JsonConvert.DeserializeObject<CastClass>(json);
                 var x = resp;
             }
-            if (resp.cast.Count >= 10)
+            if (resp.Cast.Count >= 10)
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    resp.cast[i].profile_path = string.Concat(imageUrl, resp.cast[i].profile_path);
-                    data.Add(resp.cast[i]);
+                    resp.Cast[i].profile_path = string.Concat(imageUrl, resp.Cast[i].profile_path);
+                    data.Add(resp.Cast[i]);
                 }
             }
             else
             {
-                for (int i = 0; i < resp.cast.Count; i++)
+                for (int i = 0; i < resp.Cast.Count; i++)
                 {
-                    resp.cast[i].profile_path = string.Concat(imageUrl, resp.cast[i].profile_path);
-                    data.Add(resp.cast[i]);
+                    resp.Cast[i].profile_path = string.Concat(imageUrl, resp.Cast[i].profile_path);
+                    data.Add(resp.Cast[i]);
                 }
             }
 

@@ -27,29 +27,37 @@ namespace MovieApp.Models
         public async Task<Example> GetDetail(string id)
         {
             Example resp = new Example();
-            using (HttpClient client = new HttpClient())
+            try
             {
-                var response = await client.GetAsync(string.Concat(movieUri, id, api_key, endUri));
-                var json = await response.Content.ReadAsStringAsync();
-                resp = JsonConvert.DeserializeObject<Example>(json);
-            }
 
-            if (resp.production_companies != null)
+                using (HttpClient client = new HttpClient())
+                {
+                    var response = await client.GetAsync(string.Concat(movieUri, id, api_key, endUri));
+                    var json = await response.Content.ReadAsStringAsync();
+                    resp = JsonConvert.DeserializeObject<Example>(json);
+                }
+
+                if (resp.production_companies != null && resp.production_companies.Any())
+                {
+                    resp.production_companies.ToList().ForEach(x => list_companies += string.Concat(x.name, ", "));
+                    list_companies = list_companies.EndsWith(",") ? list_companies.TrimEnd(',') : list_companies;
+                }
+
+
+                if (resp.genres != null)
+                {
+                    resp.genres.ToList().ForEach(x => list_genres += string.Concat(x.name, ", "));
+                    list_genres = list_genres.EndsWith(",") ? list_genres.TrimEnd(',') : list_genres;
+                }
+
+                resp.list_genres = list_genres;
+                resp.list_companies = list_companies;
+            }
+            catch (Exception ex)
             {
-                resp.production_companies.ToList().ForEach(x => list_companies += string.Concat(x.name, ", "));
-                list_companies = list_companies.EndsWith(",") ? list_companies.TrimEnd(',') : list_companies;
+                string message = string.Empty;
+                message = ex.Message;
             }
-
-
-            if (resp.genres != null)
-            {
-                resp.genres.ToList().ForEach(x => list_genres += string.Concat(x.name, ", "));
-                list_genres = list_genres.EndsWith(",") ? list_genres.TrimEnd(',') : list_genres;
-            }
-
-            resp.list_genres = list_genres;
-            resp.list_companies = list_companies;
-
 
             return resp;
         }
