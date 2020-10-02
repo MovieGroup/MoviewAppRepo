@@ -7,6 +7,7 @@ namespace MovieApp.Views
 {
     public partial class MainPage : ContentPage
     {
+        bool isSearch = false;
         public MainPageViewModel ViewModel;
 
         public MainPage()
@@ -33,6 +34,22 @@ namespace MovieApp.Views
             var x = (Result)snder.BindingContext;
 
             ViewModel.NavigateDetailView((Result)snder.BindingContext);
+        }
+
+        void SearchBar_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            SearchBar searchBar = (SearchBar)sender;
+            if (searchBar != null && searchBar.Text.Length >= 3)
+            {
+                isSearch = true;
+                ViewModel.Search(searchBar.Text.ToLower());
+            }
+            else if (searchBar != null && searchBar.Text.Length == 0 && isSearch)
+            {
+                isSearch = false;
+                ViewModel.RemoveSearch();
+            }
+
         }
     }
 }

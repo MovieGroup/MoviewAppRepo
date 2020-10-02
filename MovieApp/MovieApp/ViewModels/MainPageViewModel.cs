@@ -1,16 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using MovieApp.Models;
+using Xamarin.Forms;
 using MovieApp.Views;
+using System.Threading.Tasks;
 
 namespace MovieApp.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
         private Root root;
+
         private List<Result> topRate;
         private List<Result> upcoming;
         private List<Result> popular;
+
+        private List<Result> topRateCopy;
+        private List<Result> upcomingCopy;
+        private List<Result> popularcoPY;
+
+        public ObservableCollection<Result> topprueba = new ObservableCollection<Result>();
 
 
 
@@ -49,9 +60,15 @@ namespace MovieApp.ViewModels
         public async void GetBannersAsync()
         {
             IsLoading = true;
-            TopRate = await root.GetTopRate();
-            Upcoming = await root.GetUpconming();
-            Popular = await root.GetPopular();
+            topRateCopy = await root.GetTopRate();
+            TopRate = topRateCopy;
+
+            upcomingCopy = await root.GetUpconming();
+            Upcoming = upcomingCopy;
+
+            popularcoPY = await root.GetPopular();
+            Popular = popularcoPY;
+
             IsLoading = false;
         }
 
@@ -61,5 +78,28 @@ namespace MovieApp.ViewModels
         {
             await App.Current.MainPage.Navigation.PushAsync(new DetailPage(movie), true);
         }
+
+
+        public async void Search(string filter)
+        {
+            await Device.InvokeOnMainThreadAsync(() =>
+             {
+                 TopRate = topRateCopy.FindAll(x => x.original_title.ToLower().Contains(filter)) as List<Result>;
+                 Upcoming = upcomingCopy.FindAll(x => x.original_title.ToLower().Contains(filter)) as List<Result>;
+                 Popular = popularcoPY.FindAll(x => x.original_title.ToLower().Contains(filter)) as List<Result>;
+             });
+
+        }
+
+        public async void RemoveSearch()
+        {
+            await Device.InvokeOnMainThreadAsync(() =>
+            {
+                TopRate = topRateCopy;
+                Upcoming = upcomingCopy;
+                Popular = popularcoPY;
+            });
+        }
+
     }
 }

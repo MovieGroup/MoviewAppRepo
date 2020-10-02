@@ -23,7 +23,7 @@ namespace MovieApp.Models
         private string upconmingUri = "https://api.themoviedb.org/3/movie/upcoming?api_key=";
         private string popularUri = "https://api.themoviedb.org/3/movie/popular?api_key=";
         private string endUri = "&language=en-US&page=1";
-        private string imageUrl = "http://image.tmdb.org/t/p/w500/";
+        private string imageUrl = "https://image.tmdb.org/t/p/w500/";
 
 
 

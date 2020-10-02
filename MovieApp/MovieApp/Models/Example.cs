@@ -40,15 +40,19 @@ namespace MovieApp.Models
                 if (resp.production_companies != null && resp.production_companies.Any())
                 {
                     resp.production_companies.ToList().ForEach(x => list_companies += string.Concat(x.name, ", "));
-                    list_companies = list_companies.EndsWith(",") ? list_companies.TrimEnd(',') : list_companies;
+                    list_companies = list_companies.EndsWith(", ") ? list_companies.TrimEnd(',', ' ') : list_companies;
                 }
+                else
+                    list_companies = null;
 
 
                 if (resp.genres != null)
                 {
                     resp.genres.ToList().ForEach(x => list_genres += string.Concat(x.name, ", "));
-                    list_genres = list_genres.EndsWith(",") ? list_genres.TrimEnd(',') : list_genres;
+                    list_genres = list_genres.EndsWith(", ") ? list_genres.TrimEnd(',', ' ') : list_genres;
                 }
+                else
+                    list_genres = null;
 
                 resp.list_genres = list_genres;
                 resp.list_companies = list_companies;

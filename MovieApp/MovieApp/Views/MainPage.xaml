@@ -15,13 +15,19 @@
                    TextColor="White"
                    FontAttributes="Bold"
                    FontSize="Title"/>
-            <Frame Padding="0" Margin="0" HasShadow="False" IsClippedToBounds="True">
-                <Grid>
 
-                </Grid>
-            </Frame>
-            <SearchBar PlaceholderColor="Black" Placeholder="Search..." BackgroundColor="Transparent" CancelButtonColor="White"/>
+            <StackLayout>
+                <StackLayout.BackgroundColor>
+                    <OnPlatform x:TypeArguments="Color">
+                        <On Platform="iOS" Value="Transparent" />
+                        <On Platform="Android" Value="White" />
+                    </OnPlatform>
+                </StackLayout.BackgroundColor>
+                <SearchBar TextChanged="SearchBar_TextChanged" PlaceholderColor="Black" BackgroundColor="Transparent" Placeholder="Search..." CancelButtonColor="White"/>
+            </StackLayout>
+
         </StackLayout>
+
 
 
 
@@ -36,8 +42,21 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="200"/>
                         </Grid.RowDefinitions>
-                        <CollectionView ItemsSource="{Binding Popular}"
-                                    ItemsLayout="HorizontalList">
+                        <CollectionView  ItemsSource="{Binding Popular}"
+                                         IsVisible="{Binding isvisible}"
+                                         ItemsLayout="HorizontalList" >
+                            <CollectionView.EmptyView>
+                                <StackLayout>
+                                    <Label 
+                                           VerticalOptions="CenterAndExpand"
+                                           Text="No se encontraron resultados"
+                                            FontAttributes="Bold"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            HorizontalOptions="Fill"
+                                            HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                            </CollectionView.EmptyView>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -64,6 +83,18 @@
                         </Grid.RowDefinitions>
                         <CollectionView ItemsSource="{Binding TopRate}"
                                     ItemsLayout="HorizontalList">
+                            <CollectionView.EmptyView>
+                                <StackLayout>
+                                    <Label 
+                                           VerticalOptions="CenterAndExpand"
+                                           Text="No se encontraron resultados"
+                                            FontAttributes="Bold"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            HorizontalOptions="Fill"
+                                            HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                            </CollectionView.EmptyView>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -90,6 +121,18 @@
                         </Grid.RowDefinitions>
                         <CollectionView ItemsSource="{Binding Upcoming}"
                                     ItemsLayout="HorizontalList">
+                            <CollectionView.EmptyView>
+                                <StackLayout>
+                                    <Label 
+                                           VerticalOptions="CenterAndExpand"
+                                           Text="No se encontraron resultados"
+                                            FontAttributes="Bold"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            HorizontalOptions="Fill"
+                                            HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                            </CollectionView.EmptyView>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace MovieApp.Models
 {
@@ -19,5 +20,7 @@ namespace MovieApp.Models
         public double vote_average { get; set; }
         public string overview { get; set; }
         public string release_date { get; set; }
+        [JsonIgnore]
+        public bool isvisible { get; set; } = true;
     }
 }
