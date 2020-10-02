@@ -39,12 +39,15 @@ namespace MovieApp.Views
         void SearchBar_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
             SearchBar searchBar = (SearchBar)sender;
-            if (searchBar != null && searchBar.Text.Length >= 3)
+            if (searchBar == null || searchBar.Text == null)
+                return;
+
+            if (searchBar.Text.Length >= 3)
             {
                 isSearch = true;
                 ViewModel.Search(searchBar.Text.ToLower());
             }
-            else if (searchBar != null && searchBar.Text.Length == 0 && isSearch)
+            else if (searchBar.Text.Length == 0 && isSearch)
             {
                 isSearch = false;
                 ViewModel.RemoveSearch();

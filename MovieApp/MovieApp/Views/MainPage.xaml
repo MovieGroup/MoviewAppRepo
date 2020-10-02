@@ -16,15 +16,15 @@
                    FontAttributes="Bold"
                    FontSize="Title"/>
 
-            <StackLayout>
-                <StackLayout.BackgroundColor>
+            <Frame Margin="0" Padding="0" HasShadow="False" CornerRadius="15">
+                <Frame.BackgroundColor>
                     <OnPlatform x:TypeArguments="Color">
                         <On Platform="iOS" Value="Transparent" />
                         <On Platform="Android" Value="White" />
                     </OnPlatform>
-                </StackLayout.BackgroundColor>
-                <SearchBar TextChanged="SearchBar_TextChanged" PlaceholderColor="Black" BackgroundColor="Transparent" Placeholder="Search..." CancelButtonColor="White"/>
-            </StackLayout>
+                </Frame.BackgroundColor>
+                <SearchBar  TextChanged="SearchBar_TextChanged" PlaceholderColor="Black" BackgroundColor="Transparent" Placeholder="Search..." CancelButtonColor="White"/>
+            </Frame>
 
         </StackLayout>
 
