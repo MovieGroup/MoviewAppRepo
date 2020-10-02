@@ -25,5 +25,14 @@ namespace MovieApp.Views
             ViewModel.NavigateDetailView((Result)snder.BindingContext);
 
         }
+
+        void Lista_Marcas_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            ListView snder = (ListView)sender;
+
+            var x = (Result)snder.BindingContext;
+
+            ViewModel.NavigateDetailView((Result)snder.BindingContext);
+        }
     }
 }

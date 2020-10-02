@@ -17,7 +17,13 @@ namespace MovieApp.Views
         {
             InitializeComponent();
             ViewModel = new DetailViewModel(movie);
+            BindingContext = ViewModel;
             this.movie = movie;
+        }
+
+        async void Button_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PopAsync();
         }
     }
 }

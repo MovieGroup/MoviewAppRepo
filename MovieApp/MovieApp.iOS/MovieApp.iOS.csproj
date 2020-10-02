@@ -139,4 +139,9 @@
       <Name>MovieApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Properties\back.png" />
+    <BundleResource Include="Properties\back%402x.png" />
+    <BundleResource Include="Properties\back%403x.png" />
+  </ItemGroup>
 </Project>

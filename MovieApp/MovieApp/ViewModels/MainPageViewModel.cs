@@ -59,7 +59,7 @@ namespace MovieApp.ViewModels
 
         public async void NavigateDetailView(Result movie)
         {
-            await App.Current.MainPage.Navigation.PushModalAsync(new DetailPage(movie), true);
+            await App.Current.MainPage.Navigation.PushAsync(new DetailPage(movie), true);
         }
     }
 }

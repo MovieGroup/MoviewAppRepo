@@ -1,18 +1,90 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MovieApp.Views.DetailPage">
-    <StackLayout BackgroundColor="#263647">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MovieApp.Views.DetailPage"
+             NavigationPage.HasBackButton="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.PrefersStatusBarHidden="True"
+             ios:Page.UseSafeArea="False"
+        
+             NavigationPage.HasNavigationBar="False"
+             x:Name="detailview">
 
-        <Image VerticalOptions="Start" Aspect="AspectFill" Source="http://image.tmdb.org/t/p/w500/qzA87Wf4jo1h8JMk9GilyIYvwsA.jpg"/>
-        <StackLayout BackgroundColor="#263647" VerticalOptions="FillAndExpand">
-            <Label Text="hola" TextColor="White"/>
-            <Editor BackgroundColor="#263647" Text="alv" TextColor="White" IsEnabled="False"/>
-        </StackLayout>
+    <StackLayout BackgroundColor="#263647" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
 
 
-        <StackLayout>
-            <Label TextColor="White" Text="creditos"/>
-        </StackLayout>
 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image HeightRequest="400"
+               WidthRequest="200"
+               Aspect="AspectFill"
+               Source="{Binding Movie.poster_path, Mode=OneWay}"/>
+            <ImageButton Clicked="Button_Clicked" Padding="10,70,0,0" Source="back" HorizontalOptions="Start" VerticalOptions="Start"/>
+
+        </Grid>
+
+
+        <ScrollView>
+            <StackLayout>
+
+
+
+                <StackLayout Padding="20,0" BackgroundColor="#263647" VerticalOptions="FillAndExpand">
+                    <Label Text="{Binding Movie.original_title}" TextColor="White" FontAttributes="Bold" FontSize="Title"/>
+                    <Editor BackgroundColor="#263647" Text="{Binding Movie.overview}" TextColor="LightGray" IsReadOnly="True"/>
+                </StackLayout>
+
+                <Grid Padding="20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120"/>
+                    </Grid.RowDefinitions>
+                    <CollectionView ItemsSource="{Binding Casts}"
+                                    ItemsLayout="HorizontalList">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="60"/>
+                                        <RowDefinition Height="50"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="20"/>
+
+                                    </Grid.ColumnDefinitions>
+                                    <ImageButton CornerRadius="20" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0"  Aspect="Fill" Source="{Binding profile_path, Mode=TwoWay}" />
+
+                                    <Label BackgroundColor="Transparent" MaxLines="2" Grid.Row="1" FontSize="Small" TextColor="LightGray" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" FontAttributes="Bold" Text="{Binding name}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+
+                <Grid Padding="20" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".25*"/>
+                        <ColumnDefinition Width=".75*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" TextColor="LightGray" Text="Studio"/>
+                    <Label Grid.Row="1" Grid.Column="0" TextColor="LightGray" Text="Genre"/>
+                    <Label Grid.Row="2" Grid.Column="0" TextColor="LightGray" Text="Release"/>
+
+                    <Label Grid.Row="0" Grid.Column="1" TextColor="LightGray" Text="{Binding Companies.list_companies, FallbackValue='N/A'}"/>
+                    <Label Grid.Row="1" Grid.Column="1" TextColor="LightGray" Text="{Binding Companies.list_genres, FallbackValue='N/A'}"/>
+                    <Label Grid.Row="2" Grid.Column="1" TextColor="LightGray" Text="{Binding Companies.release_date,FallbackValue='N/A', StringFormat='{0:yyyy}'}"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
 
     </StackLayout>
+
 </ContentPage>

@@ -1,92 +1,117 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MovieApp.Views.MainPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MovieApp.Views.MainPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:NavigationPage.IsNavigationBarTranslucent="True"
+             NavigationPage.HasNavigationBar="False">
 
-
-    <StackLayout BackgroundColor="#47A4D6">
+    <StackLayout BackgroundColor="#47A4D6" >
         <StackLayout BackgroundColor="#47A4D6"
                      VerticalOptions="Center"
                      Padding ="50,70,50,50" >
             <Label Text="Hello, what do you want to watch?"
-                   HorizontalTextAlignment="Center"
+
+                   HorizontalTextAlignment="Start"
                    VerticalOptions="Center"
                    TextColor="White"
                    FontAttributes="Bold"
                    FontSize="Title"/>
+            <Frame Padding="0" Margin="0" HasShadow="False" IsClippedToBounds="True">
+                <Grid>
+
+                </Grid>
+            </Frame>
             <SearchBar PlaceholderColor="Black" Placeholder="Search..." BackgroundColor="Transparent" CancelButtonColor="White"/>
         </StackLayout>
-        <Frame HasShadow="False" BackgroundColor="#263647" CornerRadius="30" VerticalOptions="FillAndExpand">
-            <StackLayout>
-                <Label Margin="0,0,0,20" Text="RECOMMENDED FOR YOUR" TextColor="White" FontSize="Medium"/>
-                <CarouselView
-                              ItemsSource="{Binding Popular, Mode=TwoWay}" >
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="120"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <ImageButton Grid.Row="0" Clicked="ImageButton_Clicked" Source="{Binding poster_path}" Aspect="AspectFill" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="Red">
-                                    <ImageButton.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Tapped="TapGestureRecognizer_Tapped"/>
-                                    </ImageButton.GestureRecognizers>
-                                </ImageButton>
-                                <Label  Grid.Row="1" FontSize="Small" TextColor="White" FontAttributes="Bold" Text="{Binding original_title}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
 
-                <Label Text="TOP RATED"  TextColor="White" FontSize="Medium"/>
 
-                <CarouselView HorizontalScrollBarVisibility="Never"
-                              ItemsSource="{Binding TopRate, Mode=TwoWay}" >
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="120"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <ImageButton Grid.Row="0" Clicked="ImageButton_Clicked" Source="{Binding poster_path}" Aspect="Fill" HorizontalOptions="FillAndExpand" />
-                                <Label  Grid.Row="1" FontSize="Small" TextColor="White" FontAttributes="Bold" Text="{Binding original_title}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
 
-                </CarouselView>
-                <Label Text="UPCOMING"  TextColor="White"  FontSize="Medium"/>
-                <CarouselView HorizontalScrollBarVisibility="Never"
-                              ItemsSource="{Binding Upcoming, Mode=TwoWay}" >
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="120"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <ImageButton Grid.Row="0" Clicked="ImageButton_Clicked" HeightRequest="100" WidthRequest="100" Source="{Binding poster_path}" Aspect="Fill" HorizontalOptions="FillAndExpand"/>
-                                <Label  Grid.Row="1" FontSize="Small" TextColor="White" FontAttributes="Bold" Text="{Binding original_title}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
+        <Frame HasShadow="False" IsClippedToBounds="True" BackgroundColor="#263647" CornerRadius="30" VerticalOptions="FillAndExpand">
+            <ScrollView>
 
-            </StackLayout>
 
+                <StackLayout>
+                    <Label Margin="0,0,0,20" Text="RECOMMENDED FOR YOUR" TextColor="LightGray" FontAttributes="Bold" FontSize="Medium"/>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200"/>
+                        </Grid.RowDefinitions>
+                        <CollectionView ItemsSource="{Binding Popular}"
+                                    ItemsLayout="HorizontalList">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="170"/>
+                                            <RowDefinition Height="20"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ImageButton CornerRadius="20" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0" Clicked="ImageButton_Clicked" Aspect="Fill" HeightRequest="90" WidthRequest="90" Source="{Binding poster_path}" />
+                                        <Label LineBreakMode="TailTruncation" Grid.Row="1" FontSize="Small" TextColor="LightGray" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" FontAttributes="Bold" Text="{Binding original_title}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+
+                    <Label Text="TOP RATED"  TextColor="LightGray" FontAttributes="Bold" FontSize="Medium"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="180"/>
+                        </Grid.RowDefinitions>
+                        <CollectionView ItemsSource="{Binding TopRate}"
+                                    ItemsLayout="HorizontalList">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="150"/>
+                                            <RowDefinition Height="20"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ImageButton CornerRadius="20" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0" Clicked="ImageButton_Clicked" Aspect="Fill" HeightRequest="90" WidthRequest="90" Source="{Binding poster_path}" />
+                                        <Label LineBreakMode="TailTruncation"   Grid.Row="1" FontSize="Small" TextColor="LightGray" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" FontAttributes="Bold" Text="{Binding original_title}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+
+                    <Label Text="UPCOMING"  TextColor="LightGray" FontAttributes="Bold"  FontSize="Medium"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="180"/>
+                        </Grid.RowDefinitions>
+                        <CollectionView ItemsSource="{Binding Upcoming}"
+                                    ItemsLayout="HorizontalList">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="150"/>
+                                            <RowDefinition Height="20"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <ImageButton CornerRadius="20" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0" Clicked="ImageButton_Clicked" Aspect="Fill" HeightRequest="90" WidthRequest="90" Source="{Binding poster_path}" />
+                                        <Label LineBreakMode="TailTruncation"   Grid.Row="1" FontSize="Small" TextColor="LightGray" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" FontAttributes="Bold" Text="{Binding original_title}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+
+                </StackLayout>
+            </ScrollView>
         </Frame>
 
     </StackLayout>
