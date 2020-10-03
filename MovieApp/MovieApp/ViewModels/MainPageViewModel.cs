@@ -6,13 +6,14 @@ using MovieApp.Models;
 using Xamarin.Forms;
 using MovieApp.Views;
 using System.Threading.Tasks;
+using MovieApp.ViewModels.CommandsViewModel;
 
 namespace MovieApp.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
         private Root root;
-
+        public DetailNavigationCommand DetailNavCommand { get; set; }
         private List<Result> topRate;
         private List<Result> upcoming;
         private List<Result> popular;
@@ -50,6 +51,7 @@ namespace MovieApp.ViewModels
         public MainPageViewModel()
         {
             root = new Root();
+            DetailNavCommand = new DetailNavigationCommand(this);
             TopRate = new List<Result>();
             Upcoming = new List<Result>();
             Popular = new List<Result>();

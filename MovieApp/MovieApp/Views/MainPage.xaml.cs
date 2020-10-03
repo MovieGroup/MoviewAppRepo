@@ -17,24 +17,15 @@ namespace MovieApp.Views
             BindingContext = ViewModel;
         }
 
-        void ImageButton_Clicked(System.Object sender, System.EventArgs e)
-        {
-            ImageButton snder = (ImageButton)sender;
+        //void ImageButton_Clicked(System.Object sender, System.EventArgs e)
+        //{
+        //    ImageButton snder = (ImageButton)sender;
 
-            var x = (Result)snder.BindingContext;
+        //    var x = (Result)snder.BindingContext;
 
-            ViewModel.NavigateDetailView((Result)snder.BindingContext);
+        //    ViewModel.NavigateDetailView((Result)snder.BindingContext);
 
-        }
-
-        void Lista_Marcas_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
-        {
-            ListView snder = (ListView)sender;
-
-            var x = (Result)snder.BindingContext;
-
-            ViewModel.NavigateDetailView((Result)snder.BindingContext);
-        }
+        //}
 
         void SearchBar_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
         {

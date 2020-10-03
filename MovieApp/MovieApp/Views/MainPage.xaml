@@ -3,7 +3,6 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
             ios:Page.PrefersStatusBarHidden="True"
              ios:Page.UseSafeArea="False"
-        
              NavigationPage.HasNavigationBar="False">
 
     <StackLayout BackgroundColor="#47A4D6" >
@@ -25,12 +24,10 @@
                         <On Platform="Android" Value="White" />
                     </OnPlatform>
                 </Frame.BackgroundColor>
-                <SearchBar  TextChanged="SearchBar_TextChanged" PlaceholderColor="Black" BackgroundColor="Transparent" Placeholder="Search..." CancelButtonColor="White"/>
+                <SearchBar TextChanged="SearchBar_TextChanged" PlaceholderColor="Black" BackgroundColor="Transparent" Placeholder="Search..." CancelButtonColor="White"/>
             </Frame>
 
         </StackLayout>
-
-
 
 
         <Frame HasShadow="False" IsClippedToBounds="True" BackgroundColor="#263647" CornerRadius="30" VerticalOptions="FillAndExpand">
@@ -46,7 +43,8 @@
                         </Grid.RowDefinitions>
                         <CollectionView  ItemsSource="{Binding Popular}"
                                          IsVisible="{Binding isvisible}"
-                                         ItemsLayout="HorizontalList" >
+                                         ItemsLayout="HorizontalList"
+                                         x:Name="collectionView">
                             <CollectionView.EmptyView>
                                 <StackLayout>
                                     <Label 
@@ -70,7 +68,7 @@
                                             <ColumnDefinition Width="120"/>
                                             <ColumnDefinition Width="20"/>
                                         </Grid.ColumnDefinitions>
-                                        <ImageButton CornerRadius="20" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0" Clicked="ImageButton_Clicked" Aspect="Fill" HeightRequest="90" WidthRequest="90" Source="{Binding poster_path}" />
+                                        <ImageButton CornerRadius="20" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0" Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DetailNavCommand}" CommandParameter="{Binding}" Aspect="Fill" HeightRequest="90" WidthRequest="90" Source="{Binding poster_path}" />
                                         <Label LineBreakMode="TailTruncation" Grid.Row="1" FontSize="Small" TextColor="LightGray" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" FontAttributes="Bold" Text="{Binding original_title}"/>
                                     </Grid>
                                 </DataTemplate>
@@ -84,6 +82,7 @@
                             <RowDefinition Height="180"/>
                         </Grid.RowDefinitions>
                         <CollectionView ItemsSource="{Binding TopRate}"
+                                        x:Name="collectionView2"
                                     ItemsLayout="HorizontalList">
                             <CollectionView.EmptyView>
                                 <StackLayout>
@@ -108,7 +107,7 @@
                                             <ColumnDefinition Width="120"/>
                                             <ColumnDefinition Width="20"/>
                                         </Grid.ColumnDefinitions>
-                                        <ImageButton CornerRadius="20" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0" Clicked="ImageButton_Clicked" Aspect="Fill" HeightRequest="90" WidthRequest="90" Source="{Binding poster_path}" />
+                                        <ImageButton CornerRadius="20" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0" Command="{Binding Source={x:Reference collectionView2}, Path=BindingContext.DetailNavCommand}" CommandParameter="{Binding}" Aspect="Fill" HeightRequest="90" WidthRequest="90" Source="{Binding poster_path}" />
                                         <Label LineBreakMode="TailTruncation"   Grid.Row="1" FontSize="Small" TextColor="LightGray" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" FontAttributes="Bold" Text="{Binding original_title}"/>
                                     </Grid>
                                 </DataTemplate>
@@ -122,6 +121,7 @@
                             <RowDefinition Height="180"/>
                         </Grid.RowDefinitions>
                         <CollectionView ItemsSource="{Binding Upcoming}"
+                                        x:Name="collectionView3"
                                     ItemsLayout="HorizontalList">
                             <CollectionView.EmptyView>
                                 <StackLayout>
@@ -147,7 +147,7 @@
                                             <ColumnDefinition Width="20"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <ImageButton CornerRadius="20" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0" Clicked="ImageButton_Clicked" Aspect="Fill" HeightRequest="90" WidthRequest="90" Source="{Binding poster_path}" />
+                                        <ImageButton CornerRadius="20" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Grid.Row="0" Command="{Binding Source={x:Reference collectionView3}, Path=BindingContext.DetailNavCommand}" CommandParameter="{Binding}" Aspect="Fill" HeightRequest="90" WidthRequest="90" Source="{Binding poster_path}" />
                                         <Label LineBreakMode="TailTruncation"   Grid.Row="1" FontSize="Small" TextColor="LightGray" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" FontAttributes="Bold" Text="{Binding original_title}"/>
                                     </Grid>
                                 </DataTemplate>
